@@ -42,22 +42,23 @@ for(let i = 0; i < questions.length; i++){
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-if (candidateAnswers == correctAnswers){
-	console.log("You are correct!");
-	for(let i=0; i < correctAnswers.length; i++){
-		console.log(`You answered:${candidateAnswers[i]}
-		correct answer: ${correctAnswers[i]}`);
-	};
-} else {
-	console.log("Sorry, that is incorrect.");
-		for(let i=0; i < correctAnswers.length; i++){
-		console.log(`You answered:${candidateAnswers[i]}
-		correct answer: ${correctAnswers[i]}`);
+  let score = 0;
+	for(let i=0; i < correctAnswers.length; i++)
+	{
+		if (candidateAnswers[i].toLowerCase() == correctAnswers[i].toLowerCase())
+		{
+			score++
 		};
-};
+	}; 
 
-  let grade;
+  let grade = (score/correctAnswers.length)*100;
   
+  console.log(`>>>Overall Grade: ${grade}% (${score} / ${correctAnswers.length} resonses correct)<<<`);
+  if (grade >= 80){
+	  console.log(`>>> Status: PASSED <<<`);
+  } else {
+	  console.log(`>>> Status: FAILED <<<`);
+  }
 
   return grade;
 }
